@@ -16,8 +16,7 @@ public class UsuarioService {
     private final PasswordEncoder encoder;
 
     public void salvar(Usuario user){
-        var senha = user.getSenha();
-        user.setSenha(encoder.encode(senha));
+        user.setSenha(encoder.encode(user.getSenha()));
         repository.save(user);
     }
 

@@ -11,12 +11,14 @@ import org.springframework.stereotype.Service;
 
 import com.jpa.libraryapi.model.GeneroLivro;
 import com.jpa.libraryapi.model.Livro;
+import com.jpa.libraryapi.model.Usuario;
 import com.jpa.libraryapi.repository.LivroRepository;
 import static com.jpa.libraryapi.repository.LivroSpecs.anoPublicacaoEqual;
 import static com.jpa.libraryapi.repository.LivroSpecs.generoEqual;
-import static com.jpa.libraryapi.repository.LivroSpecs.isbnEqual; //importa todos os
-import static com.jpa.libraryapi.repository.LivroSpecs.nomeAutorLike;
+import static com.jpa.libraryapi.repository.LivroSpecs.isbnEqual;
+import static com.jpa.libraryapi.repository.LivroSpecs.nomeAutorLike; //importa todos os
 import static com.jpa.libraryapi.repository.LivroSpecs.tituloLike;
+import com.jpa.libraryapi.security.SecurityService;
 import com.jpa.libraryapi.validator.LivroValidator;
 
 import lombok.RequiredArgsConstructor;
@@ -29,9 +31,12 @@ public class LivroService {
     //outra forma de injeção de dependencias
     private final LivroRepository repository; 
     private final LivroValidator validator;
+    private final SecurityService securityService;
 
     public Livro salvar(Livro livro){
         validator.validar(livro);
+        Usuario usuario = securityService.obterUsuarioLogado();
+        livro.setUsuario(usuario);
         return repository.save(livro);
     }
 

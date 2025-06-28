@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.jpa.libraryapi.exceptions.OperacaoNaoPermitidaException;
 import com.jpa.libraryapi.model.Autor;
+import com.jpa.libraryapi.model.Usuario;
 import com.jpa.libraryapi.repository.AutorRepository;
 import com.jpa.libraryapi.repository.LivroRepository;
+import com.jpa.libraryapi.security.SecurityService;
 import com.jpa.libraryapi.validator.AutorValidator;
 
 
@@ -28,10 +30,16 @@ public class AutorService {
 
     @Autowired 
     LivroRepository livroRepository;
+
+    @Autowired
+    SecurityService securityService;
     
 
     public Autor salvar(Autor autor){
         validator.validar(autor);
+        Usuario usuario = securityService.obterUsuarioLogado();
+        autor.setUsuario(usuario);
+        
         return this.autorRepository.save(autor);
     }
 
