@@ -45,10 +45,8 @@ public class CustomRegisteredClientRepository implements RegisteredClientReposit
                 .build();
     }
 
-
     @Override
     public RegisteredClient findById(String arg0) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 

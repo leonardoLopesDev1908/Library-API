@@ -19,7 +19,6 @@ public class CustomAuthentication implements Authentication{
 
     private final Usuario usuario;
 
-
     @Override
     public String getName() {
         return usuario.getLogin();

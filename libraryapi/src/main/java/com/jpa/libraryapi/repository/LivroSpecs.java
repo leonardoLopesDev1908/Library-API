@@ -27,10 +27,11 @@ public class LivroSpecs {
 
     public static Specification<Livro> nomeAutorLike(String nome){
         return (root, query, cb) -> {
-            //Fazendom com Join
-            // Join<Object, Object> joinAutor = root.join("autor", JoinType.LEFT);
-            // return cb.like(cb.upper(joinAutor.get("nome")), "%"+ nome.toUpperCase() +"%");
-
+            //Fazendom com Join:
+            /*  
+             *   Join<Object, Object> joinAutor = root.join("autor", JoinType.LEFT);
+             *   return cb.like(cb.upper(joinAutor.get("nome")), "%"+ nome.toUpperCase() +"%");
+            */
             return cb.like(cb.upper(root.get("autor").get("nome")), "%"+ nome.toUpperCase() +"%");
         };
     }

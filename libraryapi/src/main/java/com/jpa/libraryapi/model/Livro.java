@@ -48,7 +48,7 @@ public class Livro {
     @Column(name="genero", length=30, nullable=false)
     private GeneroLivro genero;
 
-    @Column(name="preco", precision=18, scale=2) // 18 posições com 2 decimais
+    @Column(name="preco", precision=18, scale=2) 
     private BigDecimal preco;
 
     @ManyToOne(fetch = FetchType.EAGER)

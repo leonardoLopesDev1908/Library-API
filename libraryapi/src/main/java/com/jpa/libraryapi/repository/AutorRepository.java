@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jpa.libraryapi.model.Autor;
 
-@Repository //opcional
+@Repository 
 public interface AutorRepository extends JpaRepository<Autor, UUID>{
 
     List<Autor> findByNome(String nome);

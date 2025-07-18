@@ -2,13 +2,12 @@ package com.jpa.libraryapi.config;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
-import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
 public class DatabaseConfiguration {
@@ -30,11 +29,11 @@ public class DatabaseConfiguration {
         config.setPassword(password);
         config.setDriverClassName(driver);
 
-        config.setMaximumPoolSize(10); // maximo de conexões liberadas
-        config.setMinimumIdle(1); // tamanho inicial do pool
+        config.setMaximumPoolSize(10); 
+        config.setMinimumIdle(1);
         config.setPoolName("library-db-pool");
         config.setMaxLifetime(600000);
-        config.setConnectionTimeout(100000); //tempo para obter a conexão
+        config.setConnectionTimeout(100000);
         config.setConnectionTestQuery("select 1");
 
         return new HikariDataSource(config);

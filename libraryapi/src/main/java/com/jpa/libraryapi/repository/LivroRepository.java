@@ -29,7 +29,6 @@ public interface LivroRepository extends JpaRepository<Livro, UUID>, JpaSpecific
 
     Page<Livro> findByAutor(Autor autor, Pageable pageable); 
 
-    //Query Method
     List<Livro> findByAutor(Autor autor);
 
     boolean existsByAutor(Autor autor);
