@@ -39,7 +39,7 @@ public class AutorService {
         validator.validar(autor);
         Usuario usuario = securityService.obterUsuarioLogado();
         autor.setUsuario(usuario);
-        
+
         return this.autorRepository.save(autor);
     }
 

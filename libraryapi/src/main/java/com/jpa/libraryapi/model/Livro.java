@@ -25,7 +25,7 @@ import lombok.Data;
 
 
 @Entity
-@Table(name="livro")
+@Table(name="livro", schema="public")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Livro {

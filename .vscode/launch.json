@@ -10,10 +10,10 @@
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "env": {
+              "env": { 
                 "DB_PASSWORD": "postgres",
-                "CLIENT_ID": "1021988242550-9gnm70a510vivml6jl8psq82s11dh53h.apps.googleusercontent.com",
-                "CLIENT_SECRET": "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"
+                "GOOGLE_CLIENT_ID": "1021988242550-9gnm70a510vivml6jl8psq82s11dh53h.apps.googleusercontent.com",
+                "GOOGLE_CLIENT_SECRET": "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"
             }
         },
         {

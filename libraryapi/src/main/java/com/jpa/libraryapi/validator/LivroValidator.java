@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.jpa.libraryapi.exceptions.CampoInvalidoException;
 import com.jpa.libraryapi.exceptions.RegistroDuplicadoException;
+import com.jpa.libraryapi.model.GeneroLivro;
 import com.jpa.libraryapi.model.Livro;
 import com.jpa.libraryapi.repository.LivroRepository;
 
@@ -26,6 +27,13 @@ public class LivroValidator {
         if(isPrecoObrigatorioNulo(livro)){
             throw new CampoInvalidoException("preco", "Livros a partir de 2020 devem ter preço");
         }
+
+        boolean teste = existeGenero(livro.getGenero().toString()); 
+        System.out.println("Teste: " + teste);
+
+        if (!existeGenero(livro.getGenero().toString())) {
+            throw new CampoInvalidoException("genero", "Este gênero não está cadastrado em nosso sistema");
+        }
     }
 
     private boolean isPrecoObrigatorioNulo(Livro livro){
@@ -44,5 +52,14 @@ public class LivroValidator {
                     .map(Livro::getId)
                     .stream()
                     .anyMatch(id -> !id.equals(livro.getId()));
+    }
+
+    private boolean existeGenero(String genero){
+        for(GeneroLivro gn : GeneroLivro.values()){
+            if(gn.name().equalsIgnoreCase(genero)){
+                return true;
+            } 
+        }
+        return false;    
     }
 }

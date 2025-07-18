@@ -1,12 +1,13 @@
 package com.jpa.libraryapi.security;
 
-import com.jpa.libraryapi.model.Usuario;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import com.jpa.libraryapi.model.Usuario;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +55,6 @@ public class CustomAuthentication implements Authentication{
 
     @Override
     public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
-        
     }
 
 }

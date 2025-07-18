@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table
+@Table(name = "usuario", schema = "public")
 @Data
 public class Usuario {
     
@@ -28,6 +28,9 @@ public class Usuario {
 
     @Column
     private String senha;
+
+    @Column(name="email")
+    private String email;
 
     @Type(ListArrayType.class)
     @Column(name="roles", columnDefinition = "varchar[]")

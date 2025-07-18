@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErroResposta handleErrosGenericos(RuntimeException e) {
         return new ErroResposta(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro no servidor."+ 
-            " Entre em contato com a administração.", List.of());
+            "Entre em contato com a administração.", List.of());
     }
 
     @ExceptionHandler(AccessDeniedException.class)
@@ -62,4 +62,5 @@ public class GlobalExceptionHandler {
         return new ErroResposta(HttpStatus.FORBIDDEN.value(), 
                     "Voce não tem permissão para essa ação", List.of());
     }
+
 }

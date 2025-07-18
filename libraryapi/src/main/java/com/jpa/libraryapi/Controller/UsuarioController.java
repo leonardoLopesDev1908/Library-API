@@ -1,5 +1,6 @@
 package com.jpa.libraryapi.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,15 +13,15 @@ import com.jpa.libraryapi.Controller.mappers.UsuarioMapper;
 import com.jpa.libraryapi.model.Usuario;
 import com.jpa.libraryapi.service.UsuarioService;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
-@RequiredArgsConstructor
-@RequestMapping("usuarios")
+@RequestMapping("/usuarios")
 public class UsuarioController {
     
-    private final UsuarioService service;
-    private final UsuarioMapper mapper;
+    @Autowired
+    UsuarioService service;
+    
+    @Autowired
+    UsuarioMapper mapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
