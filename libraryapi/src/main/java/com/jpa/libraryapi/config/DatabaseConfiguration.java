@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import jakarta.annotation.PostConstruct;
+
 @Configuration
 public class DatabaseConfiguration {
 
@@ -37,6 +39,12 @@ public class DatabaseConfiguration {
         config.setConnectionTestQuery("select 1");
 
         return new HikariDataSource(config);
+    }
+
+    @PostConstruct
+    public void logConfig() {
+        System.out.println("Database URL: " + url);
+        System.out.println("Username: " + username);
     }
     
 }

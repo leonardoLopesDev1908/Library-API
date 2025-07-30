@@ -26,9 +26,11 @@ import com.jpa.libraryapi.security.SecurityService;
 import com.jpa.libraryapi.service.AutorService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/autores")
+@RequiredArgsConstructor
 public class AutorController implements GenericController{
  
     @Autowired
@@ -37,8 +39,7 @@ public class AutorController implements GenericController{
     @Autowired 
     SecurityService securityService;
 
-    @Autowired 
-    AutorMapper mapper;
+    private final AutorMapper mapper;
 
     @PostMapping
     @PreAuthorize("hasRole('GERENTE')")

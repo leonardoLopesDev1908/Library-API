@@ -80,6 +80,7 @@ build/
 # Arquivos de IDEs
 .idea/               # Ignora pasta de configuração do IntelliJ IDEA
 .vscode/             # Ignora pasta de configuração do VS Code (se tiver configs pessoais ou muito grandes)
+*.json
 *.iml                # Ignora arquivos de módulo do IntelliJ IDEA
 *.ipr
 *.iws
