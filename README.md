@@ -1,4 +1,4 @@
-# 📚 Library-API
+# Library-API
 
 Este projeto é uma primeira experiência com a construção de uma API utilizando **Spring Framework**.
 
