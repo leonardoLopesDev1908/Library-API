@@ -4,12 +4,13 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.jpa.libraryapi.model.Usuario;
-import com.jpa.libraryapi.service.UsuarioService;
+import com.jpa.libraryapi.user.Usuario;
+import com.jpa.libraryapi.user.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,7 +37,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         boolean senhasMatchs = encoder.matches(senhaDigitada, senhaBcrypted);
 
         if(senhasMatchs){
-            return new CustomAuthentication(usuarioEncontrado);
+            return new UsernamePasswordAuthenticationToken(
+                usuarioEncontrado.getLogin(),
+                usuarioEncontrado.getSenha(),
+                usuarioEncontrado.getRoles().stream()
+                    .map(SimpleGrantedAuthority::new)
+                    .toList()
+            );
         } 
         
         throw new UsernameNotFoundException("Usuario ou senha incorretos");

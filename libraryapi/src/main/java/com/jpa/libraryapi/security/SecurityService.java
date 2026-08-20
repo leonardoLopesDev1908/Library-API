@@ -2,11 +2,10 @@ package com.jpa.libraryapi.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.jpa.libraryapi.model.Usuario;
-import com.jpa.libraryapi.service.UsuarioService;
+import com.jpa.libraryapi.user.Usuario;
+import com.jpa.libraryapi.user.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.jpa.libraryapi.model.Usuario;
-import com.jpa.libraryapi.service.UsuarioService;
+import com.jpa.libraryapi.user.Usuario;
+import com.jpa.libraryapi.user.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
 

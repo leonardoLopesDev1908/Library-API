@@ -2,15 +2,14 @@ spring:
   application:
     name: libraryapi
   datasource:
-    url: jdbc:postgresql://localhost:5432/librarydb
-    username: postgres
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/library_db
+    username: leona
+    password: Cpp#1501POAr$
     driver-class-name: org.postgresql.Driver
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
-      ddl-auto: none  
-      # ddl-auto: update  
+      ddl-auto: update  
     properties:
       hibernate.format_sql: true
   security: 
@@ -18,6 +17,7 @@ spring:
       client:
         registration:
           google:
-            client-id: ${CLIENT_ID}
-            client-secret: ${CLIENT_SECRET}
+            client-id: 1021988242550-9gnm70a510vivml6jl8psq82s11dh53h.apps.googleusercontent.com
+            client-secret: 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
+
       
