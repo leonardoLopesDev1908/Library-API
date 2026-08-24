@@ -11,21 +11,17 @@ import com.jpa.libraryapi.books.models.dtos.response.BookResponse;
 import com.jpa.libraryapi.books.models.entities.Book;
 import com.jpa.libraryapi.books.models.mapper.BookMapper;
 import com.jpa.libraryapi.books.repository.BookRepository;
-import com.jpa.libraryapi.security.SecurityService;
-//métodos estático de LivroSpecs
 
 @Service
 public class BookService {
-    
-    private final BookRepository repository; 
-    private final SecurityService securityService;
+
+    private final BookRepository repository;
     private final AuthorService authorService;
     private final BookMapper mapper;
 
-    public BookService(BookRepository repository, SecurityService securityService,
+    public BookService(BookRepository repository,
                        AuthorService authorService, BookMapper mapper) {
         this.repository = repository;
-        this.securityService = securityService;
         this.authorService = authorService;
         this.mapper = mapper;
     }

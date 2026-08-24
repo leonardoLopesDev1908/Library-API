@@ -43,7 +43,7 @@ public class Author {
     @Column(name="nationality", length=50, nullable=false)
     private String nationality;
 
-    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Book> books;
 
     @CreatedDate

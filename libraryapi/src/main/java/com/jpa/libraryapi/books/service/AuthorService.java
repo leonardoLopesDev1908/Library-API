@@ -9,7 +9,6 @@ import com.jpa.libraryapi.books.models.entities.Author;
 import com.jpa.libraryapi.books.models.mapper.AuthorMapper;
 import com.jpa.libraryapi.books.repository.AuthorRepository;
 import com.jpa.libraryapi.exceptions.OperacaoNaoPermitidaException;
-import com.jpa.libraryapi.security.SecurityService;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -21,7 +20,7 @@ public class AuthorService {
     //private final SecurityService securityService;
     private final AuthorMapper mapper;
 
-    public AuthorService(AuthorRepository repository, SecurityService securityService,
+    public AuthorService(AuthorRepository repository,
                          AuthorMapper mapper) {
         this.repository = repository;
         //this.securityService = securityService;

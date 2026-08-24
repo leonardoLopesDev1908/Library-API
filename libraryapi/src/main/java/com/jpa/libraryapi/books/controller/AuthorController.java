@@ -19,7 +19,7 @@ import com.jpa.libraryapi.common.ApiResponse;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/autores")
+@RequestMapping("/authors")
 public class AuthorController {
  
     private final AuthorService service;
@@ -31,17 +31,15 @@ public class AuthorController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('GERENTE')")
-    public ApiResponse<AuthorResponse> salvar(@RequestBody @Valid CreateAuthorRequest dto){
+    public ApiResponse<AuthorResponse> save(@RequestBody @Valid CreateAuthorRequest dto){
         AuthorResponse response = mapper.toDTO(service.salvar(mapper.toEntity(dto)));
         return ApiResponse.success(response);
     }
 
     @GetMapping("{id}")
-    @PreAuthorize("hasAnyRole('OPERADOR', 'GERENTE')")
-    public ApiResponse<AuthorResponse> obterDetalhes(@PathVariable("id") String id){
-        var idAutor = UUID.fromString(id);
-        AuthorResponse response = mapper.toDTO(service.obterPorId(idAutor));
+    public ApiResponse<AuthorResponse> getDetails(@PathVariable("id") String id){
+        var authorId = UUID.fromString(id);
+        AuthorResponse response = mapper.toDTO(service.obterPorId(authorId));
         return ApiResponse.success(response);
     }
 

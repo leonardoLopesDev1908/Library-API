@@ -20,19 +20,18 @@ import com.jpa.libraryapi.books.models.entities.BookGenre;
 
 import jakarta.transaction.Transactional;
 
-
 /**
  * @see LivroRepositoryTest
  */
 
 public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificationExecutor<Book>{
 
-    Page<Book> findByAutor(Author author, Pageable pageable);
+    Page<Book> findByAuthor(Author author, Pageable pageable);
 
     //Query Method
-    List<Book> findByAutor(Author author);
+    List<Book> findByAuthor(Author author);
 
-    boolean existsByAutor(Author author);
+    boolean existsByAuthor(Author author);
     
     List<Book> findByTitle(String titulo);
 
@@ -45,15 +44,15 @@ public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificat
     // JPQL -> referencias às entidades e propriedades
     @Query("select l from Book as l "+
             "order by l.title, l.price")
-    List<Book> listarTodos();
+    List<Book> listTodos();
 
     @Query("select a from Book l " + 
             "join l.author a")
-    List<Author> listarAutoresDosBooks();
+    List<Author> listBooksAuthors();
 
     @Query("select l.title from Book l" +
            " order by l.title")
-    List<String> listarTitulos();
+    List<String> listTitulos();
 
     @Query("""
         select l.genre from Book l
@@ -61,7 +60,7 @@ public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificat
         where a.nationality = "brasileiro"
         order by l.genre 
     """)
-    List<String> listarGenresAutoresBr();
+    List<String> listGenresAuthorsBr();
 
     @Query("select l from Book l where l.genre = :nomeGenre")
     List<Book> findBygenre(@Param("nomeGenre") BookGenre nomeGenre);
