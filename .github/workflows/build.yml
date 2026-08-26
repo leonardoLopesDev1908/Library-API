@@ -3,16 +3,16 @@ on: push
 jobs:
   validate:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./libraryapi
     steps:
+      - run: pwd
       - run: echo "Building..."
       - run: mvn validate
-#  test:
-#    runs-on: ubuntu-latest
 #    steps:
 #      - run: echo "Testing..."
 #      - run: mvn clean test
-#    verify:
-#      runs-on: ubuntu-latest
-#      steps:
-#        - run: echo "Verifying..."
-#        - run: mvn verify
+#    steps:
+#     - run: echo "Verifying..."
+#     - run: mvn verify
