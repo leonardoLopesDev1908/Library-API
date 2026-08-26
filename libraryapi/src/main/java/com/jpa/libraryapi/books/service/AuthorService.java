@@ -3,6 +3,7 @@ package com.jpa.libraryapi.books.service;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.jpa.libraryapi.books.models.entities.Author;
@@ -32,6 +33,7 @@ public class AuthorService {
         return this.repository.save(author);
     }
 
+    @Transactional
     public void atualizar(Author author){
         if(author.getId()==null){
             throw new IllegalArgumentException("Nenhum autor com esse Id foi encontrado");
