@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: pwd
+      - run: ls -la
       - run: echo "Building..."
       - run: mvn validate
 #    steps:
