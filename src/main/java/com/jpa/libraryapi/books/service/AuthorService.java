@@ -3,13 +3,13 @@ package com.jpa.libraryapi.books.service;
 import java.util.List;
 import java.util.UUID;
 
+import com.jpa.libraryapi.exceptions.NotAllowedOperationException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.jpa.libraryapi.books.models.entities.Author;
 import com.jpa.libraryapi.books.models.mapper.AuthorMapper;
 import com.jpa.libraryapi.books.repository.AuthorRepository;
-import com.jpa.libraryapi.exceptions.OperacaoNaoPermitidaException;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -50,7 +50,7 @@ public class AuthorService {
 
     public void deletar(Author author){
         if(author.hasBook()){
-            throw new OperacaoNaoPermitidaException("Sem permissão. Autor possui livros cadastrados!");
+            throw new NotAllowedOperationException("Sem permissão. Autor possui livros cadastrados!");
         }
         repository.delete(author);
     }
