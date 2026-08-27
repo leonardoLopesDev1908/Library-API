@@ -34,11 +34,11 @@ public class AuthorService {
     }
 
     @Transactional
-    public void atualizar(Author author){
+    public Author update(Author author){
         if(author.getId()==null){
             throw new IllegalArgumentException("Nenhum autor com esse Id foi encontrado");
         }
-        this.repository.save(author);
+        return this.repository.save(author);
     }
 
 
@@ -52,7 +52,16 @@ public class AuthorService {
         if(author.hasBook()){
             throw new NotAllowedOperationException("Sem permissão. Autor possui livros cadastrados!");
         }
+
         repository.delete(author);
+    }
+
+    public void deleteById(UUID id) {
+        Author author = obterPorId(id);
+        if(author.hasBook()){
+            throw new NotAllowedOperationException("Sem permissão. Autor possui livros cadastrados!");
+        }
+        repository.deleteById(id);
     }
 
     public List<Author> pesquisa(String nome, String nacionalidade){

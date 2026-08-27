@@ -40,34 +40,60 @@ class AuthorServiceTest {
 
     @Test
     @DisplayName("Should save autor when everything and return its DTO")
-    void salvar() {
-        Author authorASalvar = Author.builder()
+    void save() {
+        Author authorToSave = Author.builder()
                 .name("Leonardo Lopes")
                 .birthDate(LocalDate.of(2025, 9, 23))
                 .nationality("Argentinian")
                 .build();
 
-        Author authorSalvo = Author.builder()
+        Author authorSaved = Author.builder()
                 .id(UUID.randomUUID())
                 .name("Leonardo Lopes")
                 .birthDate(LocalDate.of(2025, 9, 23))
                 .nationality("Argentinian")
                 .build();
 
-        when(repository.save(authorASalvar)).thenReturn(authorSalvo);
+        when(repository.save(authorToSave)).thenReturn(authorSaved);
 
-        Author resultado = service.salvar(authorASalvar);
+        Author resultado = service.salvar(authorToSave);
 
         assertNotNull(resultado);
         assertNotNull(resultado.getId());
         assertEquals("Leonardo Lopes", resultado.getName());
         assertEquals("Argentinian", resultado.getNationality());
 
-        verify(repository, times(1)).save(authorASalvar);
+        verify(repository, times(1)).save(authorToSave);
     }
 
     @Test
-    void atualizar() {
+    @DisplayName("Should update author data")
+    void update() {
+        UUID id = UUID.randomUUID();
+        Author savedAuthor = Author.builder()
+                .id(id)
+                .name("Leonardo Lopes")
+                .birthDate(LocalDate.of(1999, 11, 12))
+                .nationality("Brazilian")
+                .build();
+
+        doNothing().when(repository.save(savedAuthor));
+
+        Author updateAuthor = Author.builder()
+                .id(id)
+                .name("Leonardo Lopes da Silva")
+                .birthDate(LocalDate.of(1999, 11, 12))
+                .nationality("Brazilian")
+                .build();
+
+        when(repository.save(updateAuthor)).thenReturn(updateAuthor);
+
+        Author author = service.update(updateAuthor);
+
+        assertEquals(updateAuthor.getName(), author.getName());
+
+        verify(repository, times(1)).save(savedAuthor);
+        verify(repository, times(1)).save(updateAuthor);
     }
 
     @Test
@@ -111,10 +137,13 @@ class AuthorServiceTest {
     }
 
     @Test
-    void deletar() {
-    }
+    @DisplayName("Should delete the correct author")
+    void delete() {
+        UUID id = UUID.randomUUID();
 
-    @Test
-    void pesquisa() {
+        when(repository.existsById(id)).thenReturn(true);
+        service.deleteById(id);
+
+        verify(repository, times(1)).deleteById(id);
     }
 }
