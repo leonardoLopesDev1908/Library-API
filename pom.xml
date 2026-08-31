@@ -100,7 +100,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -142,13 +147,6 @@
                         <version>${org.mapstruct.version}</version>
                     </path>
                 </annotationProcessorPaths>
-                <compilerArgs>
-                    <!-- Argumentos essenciais para resolver o erro do Lombok -->
-                    <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-                    <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
-                    <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
-                    <arg>-Amapstruct.verbose=true</arg>
-                </compilerArgs>
             </configuration>
         </plugin>
 		<plugin>
