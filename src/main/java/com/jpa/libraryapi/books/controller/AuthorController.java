@@ -16,10 +16,11 @@ import com.jpa.libraryapi.books.models.dtos.response.AuthorResponse;
 import com.jpa.libraryapi.books.service.AuthorService;
 import com.jpa.libraryapi.common.ApiResponse;
 
+import com.jpa.libraryapi.common.ApiConstants;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/authors")
+@RequestMapping(ApiConstants.API_AUTHOR)
 public class AuthorController {
  
     private final AuthorService service;
