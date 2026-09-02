@@ -1,6 +1,5 @@
 package com.jpa.libraryapi.books.service;
 
-import com.jpa.libraryapi.books.models.dtos.request.CreateCurriculumRequest;
 import com.jpa.libraryapi.books.models.entities.Curriculum;
 import com.jpa.libraryapi.books.repository.CurriculumRepository;
 import org.springframework.stereotype.Service;
@@ -17,5 +16,4 @@ public class CurriculumService {
     public Curriculum create(Curriculum request) {
         return repository.save(request);
     }
-
 }
