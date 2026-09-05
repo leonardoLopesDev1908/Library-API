@@ -1,7 +1,5 @@
 package com.jpa.libraryapi.common;
 
-import org.springframework.stereotype.Component;
-
 public class ApiConstants {
 
     public static final String API_BASE = "/api";
