@@ -15,9 +15,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "usuario_library", schema = "public")
+@Table(name = "user_library", schema = "public")
 @Data
-public class Usuario {
+public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
