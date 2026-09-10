@@ -4,6 +4,9 @@ import com.jpa.libraryapi.common.ApiResponse;
 import com.jpa.libraryapi.exceptions.DuplicatedRegisterException;
 import com.jpa.libraryapi.exceptions.InvalidFieldException;
 import com.jpa.libraryapi.exceptions.NotAllowedOperationException;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -24,4 +27,10 @@ public class GlobalExceptionHandler {
     public ApiResponse<String> handleNotAllowedOperation(NotAllowedOperationException e) {
         return ApiResponse.error(e.getMessage());
     }
-}
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ApiResponse<String>> handleEntityNotFound(EntityNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.error("Recurso nao encontrado"));
+    }
+ }

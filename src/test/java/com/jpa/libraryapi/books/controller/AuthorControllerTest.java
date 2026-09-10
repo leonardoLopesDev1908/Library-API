@@ -6,6 +6,8 @@ import com.jpa.libraryapi.books.models.dtos.response.AuthorResponse;
 import com.jpa.libraryapi.books.models.entities.Author;
 import com.jpa.libraryapi.books.models.mapper.AuthorMapper;
 import com.jpa.libraryapi.books.service.AuthorService;
+import com.jpa.libraryapi.exceptions.InvalidFieldException;
+import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -42,7 +44,7 @@ class AuthorControllerTest {
 
     @Test
     @DisplayName("Should return 202 created")
-    void save() throws Exception {
+    void successfullySave() throws Exception {
         CreateAuthorRequest request = new CreateAuthorRequest(
                 "Leonardo Lopes",
                 LocalDate.of(2002, 8, 19),
@@ -66,6 +68,26 @@ class AuthorControllerTest {
                 .andExpect(jsonPath("$.name").value(request.name()))
                 .andExpect(jsonPath("$.birthDate").value("2002-08-19"))
                 .andExpect(jsonPath("$.nationality").value(request.nationality()));
+    }
+
+    @Test
+    @DisplayName("Should throw BadRequestException for a Author without name")
+    void saveErrorBadRequestException() throws Exception {
+        UUID id = UUID.randomUUID();
+        Author author = Author.builder()
+                .id(id)
+                .name("")
+                .birthDate(LocalDate.of(2002, 8, 19))
+                .nationality("Brazilian")
+                .build();
+
+        Mockito.when(service.salvar(author)).thenThrow(BadRequestException.class);
+
+        mockMvc.perform(post("/authors")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(author)))
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.error").value("Bad Request"));
     }
 
     @Test

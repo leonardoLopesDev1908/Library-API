@@ -37,9 +37,8 @@ public class AuthorController {
     }
 
     @GetMapping("{id}")
-    public ApiResponse<AuthorResponse> getDetails(@PathVariable("id") String id){
-        var authorId = UUID.fromString(id);
-        AuthorResponse response = mapper.toDTO(service.obterPorId(authorId));
+    public ApiResponse<AuthorResponse> getDetails(@PathVariable("id") UUID id){
+        AuthorResponse response = mapper.toDTO(service.obterPorId(id));
         return ApiResponse.success(response);
     }
 

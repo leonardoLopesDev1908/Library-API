@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.jpa.libraryapi.exceptions.NotAllowedOperationException;
+import org.springframework.cache.annotation.Cacheable;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,6 @@ public class AuthorService {
         this.mapper = mapper;
     }
 
-
     public Author salvar(Author author){
         return this.repository.save(author);
     }
@@ -41,11 +41,9 @@ public class AuthorService {
         return this.repository.save(author);
     }
 
-
+    @Cacheable(value = "authors", key = "#id")
     public Author obterPorId(UUID id){
-        return repository.findById(id).orElseThrow(() -> {
-            throw new EntityNotFoundException();
-        });
+        return repository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
     public void deletar(Author author){
