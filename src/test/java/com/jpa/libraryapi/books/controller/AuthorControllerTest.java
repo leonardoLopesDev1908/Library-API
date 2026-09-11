@@ -8,6 +8,8 @@ import com.jpa.libraryapi.books.models.mapper.AuthorMapper;
 import com.jpa.libraryapi.books.service.AuthorService;
 import com.jpa.libraryapi.exceptions.InvalidFieldException;
 import org.apache.coyote.BadRequestException;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,7 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 
-
 @WebMvcTest(AuthorController.class)
 class AuthorControllerTest {
 
@@ -41,6 +42,16 @@ class AuthorControllerTest {
 
     @MockitoBean
     private AuthorMapper mapper;
+
+    @BeforeEach
+    void setup() {
+
+    }
+
+    @AfterEach
+    void tearDown() {
+
+    }
 
     @Test
     @DisplayName("Should return 202 created")

@@ -4,6 +4,7 @@ import com.jpa.libraryapi.books.models.entities.Author;
 import com.jpa.libraryapi.books.models.mapper.AuthorMapper;
 import com.jpa.libraryapi.books.repository.AuthorRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -36,6 +38,16 @@ class AuthorServiceTest {
     @BeforeEach
     void setup() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    @AfterEach
+    void tearDown() {
+
+    }
+
+    @Test
+    void shouldBeDefined() {
+        assertThat(service).isNotNull();
     }
 
     @Test

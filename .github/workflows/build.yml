@@ -1,16 +1,20 @@
 name: library_ci
 on: push
 jobs:
-  validate:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
-      - run: ls -la
-      - run: echo "Building..."
+      - uses: actions/checkout@v4
       - run: mvn validate
-#    steps:
-#      - run: echo "Testing..."
-#      - run: mvn clean test
-#    steps:
-#     - run: echo "Verifying..."
-#     - run: mvn verify
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: mvn clean test
+  verify:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Verifying..."
+      - run: mvn verify
