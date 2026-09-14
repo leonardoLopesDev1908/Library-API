@@ -25,7 +25,7 @@ jobs:
           path: target/*.jar
           retention-days: 5
   test:
-    needs: build
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
