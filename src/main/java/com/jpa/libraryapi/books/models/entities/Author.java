@@ -30,6 +30,9 @@ import jakarta.persistence.OneToMany;
 @EntityListeners(AuditingEntityListener.class)
 public class Author implements Serializable {
 
+    private boolean isUsing2FA;
+    private String secret;
+    
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.UUID)

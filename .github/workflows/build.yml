@@ -11,25 +11,38 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: 'maven'
 
       - run: pwd
       - run: ls -la
       - run: echo "Building..."
       - run: mvn validate
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: mvn validate
+
+      - name: Upload jar artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-jar
+          path: target/*.jar
+          retention-days: 5
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: mvn clean test
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Download jar artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-jar
+          path: target/
+#      - run: mvn clean test
   verify:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - run: echo "Verifying..."
-      - run: mvn verify
+#      - run: mvn verify

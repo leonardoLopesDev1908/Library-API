@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<spring-security.version>7.1.0</spring-security.version>
 		<org.mapstruct.version>1.6.3</org.mapstruct.version>
 		<mapstruc.version>1.6.0</mapstruc.version>
 		<lombok.version>1.18.38</lombok.version>
@@ -81,6 +82,11 @@
 			<groupId>io.hypersistence</groupId>
 			<artifactId>hypersistence-utils-hibernate-63</artifactId>
 			<version>3.8.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
 		<dependency>
