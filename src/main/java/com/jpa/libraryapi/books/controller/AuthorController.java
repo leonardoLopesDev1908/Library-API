@@ -3,6 +3,8 @@ package com.jpa.libraryapi.books.controller;
 import java.util.UUID;
 
 import com.jpa.libraryapi.books.models.mapper.AuthorMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +34,9 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ApiResponse<AuthorResponse> save(@RequestBody @Valid CreateAuthorRequest dto){
+    public ResponseEntity<ApiResponse<AuthorResponse>> save(@RequestBody @Valid CreateAuthorRequest dto){
         AuthorResponse response = mapper.toDTO(service.salvar(mapper.toEntity(dto)));
-        return ApiResponse.success(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(response));
     }
 
     @GetMapping("{id}")

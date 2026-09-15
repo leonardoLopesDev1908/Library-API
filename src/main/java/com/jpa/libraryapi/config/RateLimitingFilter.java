@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Component
 public class RateLimitingFilter implements Filter {
 
     private static final int MAX_REQUESTS_PER_MINUTE = 5;

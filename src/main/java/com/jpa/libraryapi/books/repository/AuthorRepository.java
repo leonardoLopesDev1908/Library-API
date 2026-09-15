@@ -13,7 +13,9 @@ import org.springframework.stereotype.Repository;
 public interface AuthorRepository extends JpaRepository<Author, UUID>{
 
     List<Author> findByName(String nome);
-    
+
+    Optional<Author> findByEmail(String email);
+
     List<Author> findByNationality(String nacionalidade);
     
     List<Author> findByNameAndNationality(String nome, String nacionalidade);

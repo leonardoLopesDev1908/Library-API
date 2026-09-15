@@ -13,6 +13,8 @@ public class AuthorMapper {
     public Author toEntity(CreateAuthorRequest request) {
         return Author.builder()
             .name(request.name())
+            .email(request.email())
+            .password(request.password())
             .nationality(request.nationality())
             .birthDate(request.birthDate())
             .createdAt(LocalDateTime.now())

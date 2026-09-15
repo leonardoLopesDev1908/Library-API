@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.jpa.libraryapi.exceptions.NotAllowedOperationException;
 import org.springframework.cache.annotation.Cacheable;
 import jakarta.transaction.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jpa.libraryapi.books.models.entities.Author;
@@ -14,23 +15,28 @@ import com.jpa.libraryapi.books.repository.AuthorRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
-
 @Service
 public class AuthorService {
 
     private final AuthorRepository repository;
-    //private final SecurityService securityService;
-    private final AuthorMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthorService(AuthorRepository repository,
+    public AuthorService(AuthorRepository repository, PasswordEncoder encoder,
                          AuthorMapper mapper) {
         this.repository = repository;
-        //this.securityService = securityService;
-        this.mapper = mapper;
+        this.passwordEncoder = encoder;
     }
 
     public Author salvar(Author author){
-        return this.repository.save(author);
+        String encoded = passwordEncoder.encode(author.getPassword());
+
+        System.out.println(author.getPassword());
+        System.out.println(encoded);
+
+        author.setPassword(encoded);
+        Author savedAuthor =  this.repository.save(author);
+
+        return savedAuthor;
     }
 
     @Transactional
@@ -44,6 +50,11 @@ public class AuthorService {
     @Cacheable(value = "authors", key = "#id")
     public Author obterPorId(UUID id){
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Cacheable(value = "authors", key = "#email")
+    public Author getByEmail(String email) {
+        return repository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
     }
 
     public void deletar(Author author){
@@ -60,16 +71,5 @@ public class AuthorService {
             throw new NotAllowedOperationException("Sem permissão. Autor possui livros cadastrados!");
         }
         repository.deleteById(id);
-    }
-
-    public List<Author> pesquisa(String nome, String nacionalidade){
-        if(nome != null && nacionalidade != null){
-            return repository.findByNameAndNationality(nome, nacionalidade);
-        } else if (nome != null){
-            return repository.findByName(nome);
-        } else if (nacionalidade != null){
-            return repository.findByNationality(nacionalidade);
-        }
-        return repository.findAll();
     }
 }
