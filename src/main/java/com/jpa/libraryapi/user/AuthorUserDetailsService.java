@@ -1,6 +1,6 @@
 package com.jpa.libraryapi.user;
 
-import com.jpa.libraryapi.books.service.AuthorService;
+import com.jpa.libraryapi.books.unit.service.AuthorService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
