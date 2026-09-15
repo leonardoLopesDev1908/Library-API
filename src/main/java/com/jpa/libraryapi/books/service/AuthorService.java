@@ -29,10 +29,6 @@ public class AuthorService {
 
     public Author salvar(Author author){
         String encoded = passwordEncoder.encode(author.getPassword());
-
-        System.out.println(author.getPassword());
-        System.out.println(encoded);
-
         author.setPassword(encoded);
         Author savedAuthor =  this.repository.save(author);
 
@@ -61,7 +57,6 @@ public class AuthorService {
         if(author.hasBook()){
             throw new NotAllowedOperationException("Sem permissão. Autor possui livros cadastrados!");
         }
-
         repository.delete(author);
     }
 

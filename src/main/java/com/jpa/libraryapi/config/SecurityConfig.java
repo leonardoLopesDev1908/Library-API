@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.config.Customizer;
@@ -40,22 +41,20 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/book").permitAll()
-                        .requestMatchers("/author").hasRole("AUTHOR")
+//                        .requestMatchers("/book").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/author").permitAll()
+//                        .requestMatchers("/author/**").hasRole("AUTHOR")
                         .anyRequest().permitAll()
                 )
                 .addFilterBefore(RateLimitingFilter.class.newInstance(), UsernamePasswordAuthenticationFilter.class)
-                .formLogin(Customizer.withDefaults())
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .permitAll()
+                )
                 //.oneTimeTokenLogin(Customizer.withDefaults())
                 .logout(LogoutConfigurer::permitAll)
                 .build();
     }
-
-//    @Bean
-//    DaoAuthenticationProvider authProvider() {
-//        var authProvider = new DaoAuthenticationProvider();
-//        authProvider.setPasswordEncoder(passwordEncoder());
-//    }
 
     @Bean
     PasswordEncoder passwordEncoder() {

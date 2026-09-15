@@ -40,9 +40,9 @@ public class AuthorController {
     }
 
     @GetMapping("{id}")
-    public ApiResponse<AuthorResponse> getDetails(@PathVariable("id") UUID id){
+    public ResponseEntity<ApiResponse<AuthorResponse>> getDetails(@PathVariable("id") UUID id){
         AuthorResponse response = mapper.toDTO(service.obterPorId(id));
-        return ApiResponse.success(response);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(ApiResponse.success(response));
     }
 
     // @DeleteMapping("{id}")
@@ -57,13 +57,5 @@ public class AuthorController {
 
     //     service.deletar(autorOptional.get());
     //     return ResponseEntity.noContent().build();
-    // }
-
-    // @PutMapping("{id}")
-    // @PreAuthorize("hasRole('GERENTE')")
-    // public ResponseEntity<Void> atualizar(@PathVariable("id") String id, 
-    //                                         @RequestBody CreateAutorRequest dto){
-    //     AutorResponse response = service.update(id, dto);
-    //     return ApiResponse.success(response);                                
     // }
 }
