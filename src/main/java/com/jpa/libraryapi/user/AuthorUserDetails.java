@@ -26,6 +26,7 @@ public class AuthorUserDetails implements UserDetails {
                 .id(author.getId())
                 .name(author.getName())
                 .email(author.getEmail())
+                .password(author.getPassword())
                 .phone(author.getPhone())
                 .build();
     }

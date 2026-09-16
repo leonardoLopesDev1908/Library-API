@@ -3,6 +3,7 @@ package com.jpa.libraryapi.config;
 import com.jpa.libraryapi.common.ApiConstants;
 import com.jpa.libraryapi.user.AuthorUserDetails;
 import com.jpa.libraryapi.user.AuthorUserDetailsService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -51,6 +52,7 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
+                .authenticationProvider(authProvider())
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/book").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/author").permitAll()

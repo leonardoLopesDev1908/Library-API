@@ -44,18 +44,4 @@ public class AuthorController {
         AuthorResponse response = mapper.toDTO(service.obterPorId(id));
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(response));
     }
-
-    // @DeleteMapping("{id}")
-    // @PreAuthorize("hasRole('GERENTE')")
-    // public ResponseEntity<Void> deletarAutor(@PathVariable("id") String id){
-    //     var idAutor = UUID.fromString(id);
-    //     Optional<Autor> autorOptional = service.obterPorId(idAutor);
-
-    //     if(autorOptional.isEmpty()){
-    //         return ResponseEntity.notFound().build();
-    //     }
-
-    //     service.deletar(autorOptional.get());
-    //     return ResponseEntity.noContent().build();
-    // }
 }
