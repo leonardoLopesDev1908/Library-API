@@ -1,7 +1,7 @@
-package com.jpa.libraryapi.books.unit.service;
+package com.jpa.libraryapi.books.service;
 
 import com.jpa.libraryapi.books.models.entities.Curriculum;
-import com.jpa.libraryapi.books.unit.repository.CurriculumRepository;
+import com.jpa.libraryapi.books.repository.CurriculumRepository;
 import org.springframework.stereotype.Service;
 
 @Service

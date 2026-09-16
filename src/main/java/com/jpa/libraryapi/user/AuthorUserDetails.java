@@ -17,6 +17,7 @@ public class AuthorUserDetails implements UserDetails {
     private String email;
     private String name;
     private String phone;
+    private String password;
 
     private static Collection<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("AUTHOR"));
 
@@ -36,7 +37,7 @@ public class AuthorUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "";
+        return password;
     }
 
     @Override

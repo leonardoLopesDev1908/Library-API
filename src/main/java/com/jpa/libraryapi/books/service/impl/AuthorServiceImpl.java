@@ -1,26 +1,25 @@
-package com.jpa.libraryapi.books.unit.service;
-
-import java.util.UUID;
-
-import com.jpa.libraryapi.exceptions.NotAllowedOperationException;
-import org.springframework.cache.annotation.Cacheable;
-import jakarta.transaction.Transactional;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+package com.jpa.libraryapi.books.service.impl;
 
 import com.jpa.libraryapi.books.models.entities.Author;
 import com.jpa.libraryapi.books.models.mapper.AuthorMapper;
-import com.jpa.libraryapi.books.unit.repository.AuthorRepository;
-
+import com.jpa.libraryapi.books.repository.AuthorRepository;
+import com.jpa.libraryapi.books.service.AuthorService;
+import com.jpa.libraryapi.exceptions.NotAllowedOperationException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
-public class AuthorService {
+public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorRepository repository;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthorService(AuthorRepository repository, PasswordEncoder encoder,
+    public AuthorServiceImpl(AuthorRepository repository, PasswordEncoder encoder,
                          AuthorMapper mapper) {
         this.repository = repository;
         this.passwordEncoder = encoder;
@@ -66,4 +65,9 @@ public class AuthorService {
         }
         repository.deleteById(id);
     }
+
+
+
+
+
 }

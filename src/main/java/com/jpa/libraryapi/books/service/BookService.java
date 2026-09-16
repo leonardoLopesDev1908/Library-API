@@ -1,4 +1,4 @@
-package com.jpa.libraryapi.books.unit.service;
+package com.jpa.libraryapi.books.service;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -10,7 +10,7 @@ import com.jpa.libraryapi.books.models.dtos.request.CreateBookRequest;
 import com.jpa.libraryapi.books.models.dtos.response.BookResponse;
 import com.jpa.libraryapi.books.models.entities.Book;
 import com.jpa.libraryapi.books.models.mapper.BookMapper;
-import com.jpa.libraryapi.books.unit.repository.BookRepository;
+import com.jpa.libraryapi.books.repository.BookRepository;
 
 @Service
 public class BookService {

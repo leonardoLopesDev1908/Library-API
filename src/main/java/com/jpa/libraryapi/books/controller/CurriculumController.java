@@ -1,9 +1,9 @@
-package com.jpa.libraryapi.books.unit.controller;
+package com.jpa.libraryapi.books.controller;
 
 import com.jpa.libraryapi.books.models.dtos.request.CreateCurriculumRequest;
 import com.jpa.libraryapi.books.models.dtos.response.CurriculumResponse;
 import com.jpa.libraryapi.books.models.mapper.CurriculumMapper;
-import com.jpa.libraryapi.books.unit.service.CurriculumService;
+import com.jpa.libraryapi.books.service.CurriculumService;
 import com.jpa.libraryapi.common.ApiConstants;
 import com.jpa.libraryapi.common.ApiResponse;
 import org.springframework.web.bind.annotation.PostMapping;

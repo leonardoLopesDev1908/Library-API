@@ -1,4 +1,4 @@
-package com.jpa.libraryapi.books.unit.repository;
+package com.jpa.libraryapi.books.repository;
 
 import java.time.LocalDate;
 import java.util.List;

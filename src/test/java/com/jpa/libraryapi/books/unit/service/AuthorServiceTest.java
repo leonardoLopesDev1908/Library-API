@@ -1,8 +1,9 @@
 package com.jpa.libraryapi.books.unit.service;
 
+import com.jpa.libraryapi.books.service.AuthorService;
 import com.jpa.libraryapi.books.models.entities.Author;
 import com.jpa.libraryapi.books.models.mapper.AuthorMapper;
-import com.jpa.libraryapi.books.unit.repository.AuthorRepository;
+import com.jpa.libraryapi.books.repository.AuthorRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

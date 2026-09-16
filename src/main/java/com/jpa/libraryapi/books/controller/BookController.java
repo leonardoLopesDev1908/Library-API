@@ -1,4 +1,4 @@
-package com.jpa.libraryapi.books.unit.controller;
+package com.jpa.libraryapi.books.controller;
 
 import java.util.UUID;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jpa.libraryapi.books.models.dtos.request.CreateBookRequest;
 import com.jpa.libraryapi.books.models.dtos.response.BookResponse;
-import com.jpa.libraryapi.books.unit.service.BookService;
+import com.jpa.libraryapi.books.service.BookService;
 import com.jpa.libraryapi.common.ApiResponse;
 
 import jakarta.validation.Valid;
