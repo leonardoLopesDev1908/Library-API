@@ -1,6 +1,7 @@
 package com.jpa.libraryapi.handlers;
 
 import com.jpa.libraryapi.common.ApiResponse;
+import com.jpa.libraryapi.exceptions.BadRequestException;
 import com.jpa.libraryapi.exceptions.DuplicatedRegisterException;
 import com.jpa.libraryapi.exceptions.InvalidFieldException;
 import com.jpa.libraryapi.exceptions.NotAllowedOperationException;
@@ -32,5 +33,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<String>> handleEntityNotFound(EntityNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error("Recurso nao encontrado"));
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiResponse<String>> handleBadRequest(BadRequestException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error(e.getMessage()));
     }
  }
