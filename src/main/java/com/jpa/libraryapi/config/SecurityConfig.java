@@ -37,11 +37,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Slf4j
 @Configuration
 @EnableWebSecurity( debug = true )
-//@EnableMultiFactorAuthentication(authorities = {
-//        FactorGrantedAuthority.PASSWORD_AUTHORITY,
-//        FactorGrantedAuthority.OTT_AUTHORITY,
-//        FactorGrantedAuthority.AUTHORIZATION_CODE_AUTHORITY
-//})
 public class SecurityConfig {
 
     @Autowired
@@ -52,7 +47,6 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
-                .authenticationProvider(authProvider())
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/book").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/author").permitAll()
